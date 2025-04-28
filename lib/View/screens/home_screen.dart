@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
   final List<int> testing = [1, 2, 3];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
           key: drawerKey,
           animationDuration: 1000,
           isDraggable: false,
+          appBar: HomeAppbar(drawerKey: drawerKey),
           slider: Drawerslider(),
           child: _buildhome(context),
-        ),
-        appBar: HomeAppbar(drawerKey: drawerKey));
+        ));
   }
 
   SizedBox _buildhome(BuildContext context) {
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             width: double.infinity,
             height: 745,
-            child: testing.isEmpty
+            child: testing.isNotEmpty
                 ? ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: testing.length,

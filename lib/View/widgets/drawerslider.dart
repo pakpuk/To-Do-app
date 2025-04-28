@@ -10,8 +10,8 @@ class Drawerslider extends StatelessWidget {
     List<IconData> Menu_icons = [
       Icons.home,
       Icons.person,
-     Icons.settings,
-     Icons.details
+      Icons.settings,
+      Icons.details
     ];
     List<String> MenuIcNames = [
       "Home",
@@ -51,18 +51,32 @@ class Drawerslider extends StatelessWidget {
                   .copyWith(color: Colors.grey),
             ),
             8.h,
-            ListView.builder(
-              itemCount: Menu_icons.length,
-              itemBuilder: (BuildContext context,index){
-              return Container(
-                child: ListTile(
-                  leading: Icon(Menu_icons[index],
-                  color: Colors.white,
-                  size: 30,),
-                ),
-              )
-            })
-  
+            Container(
+              width: double.infinity,
+              height: 300,
+              child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: Menu_icons.length,
+                  itemBuilder: (BuildContext context, index) {
+                    return Container(
+                      margin: const EdgeInsets.all(5),
+                      child: ListTile(
+                        leading: Icon(
+                          Menu_icons[index],
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        title: Text(
+                          MenuIcNames[index],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  }),
+            )
           ],
         ),
       ),
