@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_hivepackage_app/View/components/Date_time_selctor.dart';
 import 'package:to_do_hivepackage_app/View/components/task_appbar.dart';
 import 'package:to_do_hivepackage_app/View/extensions/space_ex.dart';
+import 'package:to_do_hivepackage_app/View/widgets/Material_button.dart';
 import 'package:to_do_hivepackage_app/View/widgets/RepText_widget.dart';
+import 'package:to_do_hivepackage_app/utils/colors.dart';
 import 'package:to_do_hivepackage_app/utils/strings.dart';
 
 class TaskScreen extends StatefulWidget {
@@ -54,7 +57,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       ReptextWidget(
                           titleController: _descriptionController,
                           isDescription: true),
-                      GestureDetector(
+                      Time_selctor_widget(
                         onTap: () {
                           showModalBottomSheet(
                               context: context,
@@ -67,44 +70,35 @@ class _TaskScreenState extends State<TaskScreen> {
                                     ),
                                   ));
                         },
-                        child: Container(
-                          margin: EdgeInsets.all(20),
-                          width: double.infinity,
-                          height: 50,
-                          decoration: BoxDecoration(
+                        title: AppString.timeString,
+                      ),
+                      Time_selctor_widget(
+                        onTap: () {
+                          DatePicker.showDatePicker(context,
+                              dateFormat: 'yyyy-MMMM-dd',
+                              initialDateTime: DateTime.now(),
+                              maxDateTime: DateTime(2035, 12, 31),
+                              locale: DateTimePickerLocale.en_us,
+                              onConfirm: (date, _) {});
+                        },
+                        title: AppString.dateString,
+                      ),
+                      30.h,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          MaterialButtonWidget(
+                            title: AppString.deleteTask,
+                            icon: Icons.delete,
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey.shade300),
+                            textColor: AppColors.primaryColor,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(
-                                  AppString.timeString,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                        color: Colors.grey,
-                                        fontSize: 12,
-                                      ),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(right: 10),
-                                width: 80,
-                                height: 35,
-                                child: Center(
-                                  child: Text(
-                                    "Time",
-                                  ),
-                                ),
-                              )
-                            ],
+                          MaterialButtonWidget(
+                            title: AppString.addNewTask,
+                            color: AppColors.primaryColor,
+                            textColor: Colors.white,
                           ),
-                        ),
+                        ],
                       )
                     ],
                   ),
