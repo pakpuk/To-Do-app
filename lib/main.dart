@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_hivepackage_app/View/screens/home_screen.dart';
+import 'package:to_do_hivepackage_app/View/screens/task_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: TaskScreen(),
     );
   }
 }

@@ -47,8 +47,8 @@ class Drawerslider extends StatelessWidget {
               "Flutter Dev",
               style: Theme.of(context)
                   .textTheme
-                  .displaySmall!
-                  .copyWith(color: Colors.grey),
+                  .bodySmall!
+                  .copyWith(color: Colors.white70),
             ),
             8.h,
             Container(
@@ -64,7 +64,7 @@ class Drawerslider extends StatelessWidget {
                         leading: Icon(
                           Menu_icons[index],
                           color: Colors.white,
-                          size: 30,
+                          size: 25,
                         ),
                         title: Text(
                           MenuIcNames[index],

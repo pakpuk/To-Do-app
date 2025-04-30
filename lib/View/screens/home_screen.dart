@@ -25,16 +25,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        floatingActionButton: Fab(),
-        body: SliderDrawer(
-          key: drawerKey,
-          animationDuration: 1000,
-          isDraggable: false,
-          appBar: HomeAppbar(drawerKey: drawerKey),
-          slider: Drawerslider(),
-          child: _buildhome(context),
-        ));
+      backgroundColor: Colors.white,
+      floatingActionButton: Fab(),
+      body: SliderDrawer(
+        key: drawerKey,
+        animationDuration: 1000,
+        isDraggable: false,
+        slider: Drawerslider(),
+        child: Column(
+          children: [
+            HomeAppbar(drawerKey: drawerKey), // Ensure the app bar is visible
+            Expanded(
+                child: _buildhome(
+                    context)), // Add Expanded to fill remaining space
+          ],
+        ),
+      ),
+    );
   }
 
   SizedBox _buildhome(BuildContext context) {
