@@ -7,7 +7,9 @@ class MaterialButtonWidget extends StatelessWidget {
     required this.textColor,
     this.icon,
     required this.title,
+    required this.onTap,
   });
+  final VoidCallback onTap;
   final String title;
   final Color color;
   final Color textColor;
@@ -17,7 +19,7 @@ class MaterialButtonWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
             width: 150,
             height: 60,

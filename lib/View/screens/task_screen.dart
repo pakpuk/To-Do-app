@@ -88,12 +88,14 @@ class _TaskScreenState extends State<TaskScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           MaterialButtonWidget(
+                            onTap: () {},
                             title: AppString.deleteTask,
                             icon: Icons.delete,
                             color: Colors.white,
                             textColor: AppColors.primaryColor,
                           ),
                           MaterialButtonWidget(
+                            onTap: () {},
                             title: AppString.addNewTask,
                             color: AppColors.primaryColor,
                             textColor: Colors.white,
@@ -128,7 +130,7 @@ class _TaskScreenState extends State<TaskScreen> {
           RichText(
               text: TextSpan(
                   text: AppString.addNewTask,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   children: [
                 TextSpan(
                   text: AppString.taskStrnig,
