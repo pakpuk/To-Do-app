@@ -7,7 +7,6 @@ import 'package:to_do_hivepackage_app/data/hive_data_store.dart';
 import 'package:to_do_hivepackage_app/models/task_model.dart';
 
 Future<void> main() async {
-  runApp(const MyApp());
   Hive.initFlutter();
   Hive.registerAdapter<TaskModel>(TaskModelAdapter());
   Box<TaskModel> box = await Hive.openBox<TaskModel>(HiveDataStore.boxName);
@@ -16,6 +15,26 @@ Future<void> main() async {
       box.delete(task.id);
     }
   });
+  runApp(Basewidget(child: const MyApp()));
+}
+
+class Basewidget extends InheritedWidget {
+  Basewidget({Key? key, required this.child}) : super(key: key, child: child);
+  final Widget child;
+  final HiveDataStore hivedata = HiveDataStore();
+  static Basewidget of(BuildContext context) {
+    final base = context.dependOnInheritedWidgetOfExactType<Basewidget>();
+    if (base != null) {
+      return base;
+    } else {
+      throw StateError('Could not find ancestor widget of type BaseWidget');
+    }
+  }
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return false;
+  }
 }
 
 class MyApp extends StatelessWidget {
