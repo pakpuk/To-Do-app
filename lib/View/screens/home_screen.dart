@@ -7,6 +7,7 @@ import 'package:to_do_hivepackage_app/View/components/task_widget.dart';
 import 'package:to_do_hivepackage_app/View/extensions/space_ex.dart';
 import 'package:to_do_hivepackage_app/View/widgets/drawerslider.dart';
 import 'package:to_do_hivepackage_app/View/widgets/floatingbutton_widget.dart';
+import 'package:to_do_hivepackage_app/models/task_model.dart';
 import 'package:to_do_hivepackage_app/utils/colors.dart';
 import 'package:to_do_hivepackage_app/utils/constants.dart';
 import 'package:to_do_hivepackage_app/utils/strings.dart';
@@ -119,7 +120,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           onDismissed: (_) {},
                           key: Key(index.toString()),
-                          child: Taskwidget());
+                          child: Taskwidget(
+                            task: TaskModel(
+                                id: id,
+                                title: title,
+                                subtitle: subtitle,
+                                createdAttime: createdAttime,
+                                createdAtDate: createdAtDate,
+                                isCompleted: isCompleted),
+                          ));
                     })
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
