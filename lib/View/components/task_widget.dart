@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_hivepackage_app/View/screens/task_screen.dart';
 import 'package:to_do_hivepackage_app/models/task_model.dart';
 import 'package:to_do_hivepackage_app/utils/colors.dart';
 
@@ -32,7 +34,15 @@ class _TaskwidgetState extends State<Taskwidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, CupertinoPageRoute(
+          builder: (ctx) => TaskScreen(
+            titleController: _titleController,
+            descriptionController: _subtitleController,
+            taskModel: widget.task,
+          ),
+        );e)
+      },
       child: AnimatedContainer(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
@@ -48,7 +58,10 @@ class _TaskwidgetState extends State<Taskwidget> {
         duration: Duration(milliseconds: 600),
         child: ListTile(
           leading: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              widget.task.isCompleted = !widget.task.isCompleted;
+              widget.task.save();
+            },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 600),
               decoration: BoxDecoration(

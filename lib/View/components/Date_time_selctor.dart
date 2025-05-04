@@ -5,9 +5,13 @@ class Time_selctor_widget extends StatelessWidget {
     super.key,
     required this.title,
     required this.onTap,
+    required this.time,
+    this.isTimeSelected = false,
   });
   final VoidCallback onTap;
   final String title;
+  final time;
+  final bool isTimeSelected;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,11 +40,11 @@ class Time_selctor_widget extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(right: 10),
-              width: 80,
+              width: isTimeSelected ? 150 : 80,
               height: 35,
               child: Center(
                 child: Text(
-                  title,
+                  time,
                 ),
               ),
             )
