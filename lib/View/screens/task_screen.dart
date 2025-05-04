@@ -19,8 +19,8 @@ class TaskScreen extends StatefulWidget {
       required this.descriptionController,
       this.taskModel});
 
-  final TextEditingController titleController;
-  final TextEditingController descriptionController;
+  final TextEditingController? titleController;
+  final TextEditingController? descriptionController;
   final TaskModel? taskModel;
   @override
   State<TaskScreen> createState() => _TaskScreenState();
@@ -85,25 +85,33 @@ class _TaskScreenState extends State<TaskScreen> {
     if (widget.descriptionController?.text != null &&
         widget.titleController?.text != null) {
       try {
-        widget.titleController.text = title;
-        widget.descriptionController.text = subtitle;
+        widget.titleController!.text = title;
+        widget.descriptionController!.text = subtitle;
         widget.taskModel?.save();
+        Navigator.pop(context);
       } catch (e) {
         updateTaskWarning(context);
       }
       ;
     } else {
       if (title != null && subtitle != null) {
-        var taskModel = TaskModel.create(
+        var task = TaskModel.create(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           title: title,
           subtitle: subtitle,
           createdAttime: time,
           createdAtDate: datee,
         );
-        Basewidget.of(context).hivedata.addTask(task: taskModel);
+        Basewidget.of(context).hivedata.addTask(task, task: task);
+        Navigator.pop(context);
+      } else {
+        emptyWarning(context);
       }
     }
+  }
+
+  dynamic deleteTask() {
+    return widget.taskModel?.delete();
   }
 
   @override
@@ -140,7 +148,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         ),
                       ),
                       ReptextWidget(
-                        titleController: widget.titleController,
+                        titleController: widget.titleController!,
                         onFieldSubmitted: (String inputtitle) {
                           title = inputtitle;
                         },
@@ -150,7 +158,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       ),
                       10.h,
                       ReptextWidget(
-                        titleController: widget.descriptionController,
+                        titleController: widget.descriptionController!,
                         isDescription: true,
                         onFieldSubmitted: (String inputsubtitle) {
                           title = inputsubtitle;
@@ -215,7 +223,10 @@ class _TaskScreenState extends State<TaskScreen> {
                           isTaskeAlreadyExist()
                               ? Container()
                               : MaterialButtonWidget(
-                                  onTap: () {},
+                                  onTap: () {
+                                    deleteTask();
+                                    Navigator.pop(context);
+                                  },
                                   title: AppString.deleteTask,
                                   icon: Icons.delete,
                                   color: Colors.white,

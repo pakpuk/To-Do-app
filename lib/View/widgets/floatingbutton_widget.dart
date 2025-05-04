@@ -15,6 +15,7 @@ class Fab extends StatelessWidget {
               builder: (_) => TaskScreen(
                     titleController: null,
                     descriptionController: null,
+                    taskModel: null,
                   ))),
       child: Material(
         borderRadius: BorderRadius.circular(16),

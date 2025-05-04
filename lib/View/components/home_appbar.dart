@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:to_do_hivepackage_app/main.dart';
+import 'package:to_do_hivepackage_app/utils/constants.dart';
 
 class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
   const HomeAppbar({super.key, required this.drawerKey});
@@ -44,6 +46,7 @@ class _HomeAppbarState extends State<HomeAppbar>
   }
 
   Widget build(BuildContext context) {
+    var base = Basewidget.of(context).hivedata.box;
     return SizedBox(
       height: 130,
       width: double.infinity,
@@ -62,7 +65,12 @@ class _HomeAppbarState extends State<HomeAppbar>
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: IconButton(
-                onPressed: () {}, icon: Icon(CupertinoIcons.trash, size: 40)),
+                onPressed: () {
+                  base.isEmpty
+                      ? noTaskWarning(context)
+                      : deleteAlltheTask(context);
+                },
+                icon: Icon(CupertinoIcons.trash, size: 40)),
           )
         ],
       ),

@@ -35,13 +35,16 @@ class _TaskwidgetState extends State<Taskwidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, CupertinoPageRoute(
-          builder: (ctx) => TaskScreen(
-            titleController: _titleController,
-            descriptionController: _subtitleController,
-            taskModel: widget.task,
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (ctx) => TaskScreen(
+              titleController: _titleController,
+              descriptionController: _subtitleController,
+              taskModel: widget.task,
+            ),
           ),
-        );e)
+        );
       },
       child: AnimatedContainer(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),

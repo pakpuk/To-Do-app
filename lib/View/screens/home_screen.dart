@@ -24,6 +24,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
 
+  dynamic ValueOfIndicator(List<TaskModel> task) {
+    if (task.isNotEmpty) {
+      return task.length;
+    } else {
+      return 3;
+    }
+  }
+
+  int checkDoneTask(List<TaskModel> tasks) {
+    int i = 0;
+    for (TaskModel doneTask in tasks) {
+      if (doneTask.isCompleted) {
+        i++;
+      }
+    }
+    return i;
+  }
+
   @override
   Widget build(BuildContext context) {
     final base = Basewidget.of(context);
@@ -71,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 30,
                     width: 30,
                     child: CircularProgressIndicator(
-                      value: 1 / 3,
+                      value: checkDoneTask(tasks) / ValueOfIndicator(tasks),
                       backgroundColor: Colors.grey,
                       valueColor:
                           AlwaysStoppedAnimation(AppColors.primaryColor),
@@ -87,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     3.h,
                     Text(
-                      "1 of 3 tasks",
+                      "${checkDoneTask(tasks)} of ${tasks.length} tasks",
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
