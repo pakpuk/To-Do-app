@@ -1,16 +1,20 @@
-# to_do_hivepackage_app
 
-A new Flutter project.
+---
 
-## Getting Started
+## ✅ To-Do App
 
-This project is a starting point for a Flutter application.
+```markdown
+# ✅ To-Do App – Flutter Productivity Tool
 
-A few resources to get you started if this is your first Flutter project:
+A minimalist Flutter app to manage daily tasks, designed with simplicity and productivity in mind.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ✨ Features
+- ➕ Add, edit, and delete tasks  
+- 🗂 Organize tasks by categories  
+- ✅ Mark tasks as complete  
+- 📅 Due dates & reminders  
+-
+## 🛠 Tech Stack
+- Flutter (Dart)  
+- Hive (local storage)  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
